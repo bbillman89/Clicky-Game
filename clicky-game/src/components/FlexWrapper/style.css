@@ -1,0 +1,8 @@
+.flex-full {
+    width: 1000pt;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}

@@ -1,0 +1,8 @@
+.img-container {
+    flex: 1 0 21%;
+    margin: 20px;
+    border: 5pt solid rgb(238, 238, 238);
+    background-color: rgb(238, 238, 238);
+    height: 125pt;
+    width: 125pt;
+}
