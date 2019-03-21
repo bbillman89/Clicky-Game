@@ -17,42 +17,34 @@ class App extends Component {
   }
 
   clickImage = id => {
-    const clicked = this.state.images.filter(image => image.id === id);
-    const clickedID = id;
-    this.state.clickedChar.push(clickedID);
-    this.setState({clicked});
-
-    for(let j = 0; j < this.state.clickedChar.length; j++){
-      for(let k = 0; k < this.state.clickedChar.length; k++){
-        if (this.state.clickedChar.length > 1 && this.state.clickedChar[k] === this.state.clickedChar[j]){
-          this.setState({clickedChar: []})
-        }
+    if(this.state.clickedChar.indexOf(id) === -1){
+      const clicked = this.state.images.filter(image => image.id === id);
+      const clickedID = id;
+      this.state.clickedChar.push(clickedID);
+      this.setState({clicked});
+      this.shuffle(this.state.images);
+      if(this.state.hiscore < this.state.clickedChar.length){
+        this.setState({hiscore: this.state.hiscore + 1})
       }
+    } else {
+      alert('dang... you were on a roll')
+      this.setState({clickedChar: []})
     }
-
-    this.shuffle(this.state.images);
   }
 
   shuffle(array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
   
-    // While there remain elements to shuffle...
     while (0 !== currentIndex) {
-  
-      // Pick a remaining element...
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex -= 1;
-  
-      // And swap it with the current element.
       temporaryValue = array[currentIndex];
       array[currentIndex] = array[randomIndex];
       array[randomIndex] = temporaryValue;
-    }
-  
+    }  
     return array;
   }
-
-  
+ 
   render() {
     return (
       <main>
